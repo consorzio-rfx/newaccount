@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+<table id="requestTable">
+  <thead>
+    <tr>
+      <td>Id</td>
+      <td>Name</td>
+      <td>Surname</td>
+      <td>Is NEW?</td>
+      <td>Group Head</td>
+      <td>Request Date</td>
+      <td>Contact Person</td>
+      <td>Arrival Date</td>
+      <td>Departure Date</td>
+      <td>User Profile</td>
+      <td>Main Group</td>
+      <td>Systems to enable</td>
+{#
+      <td>Mailists</td>
+#}
+      <td>Note</td>
+    </tr>
+  </thead>
+  <tbody>
+    {% for ar in ars %}
+    <tr>
+      <td> {{ ar.id }} </td>
+      <td> {{ ar.name }} </td>
+      <td> {{ ar.surname }} </td>
+      <td> {% if ar.isRenew %} NO {% else %} YES {% endif %} </td>
+      <td> {{ ar.groupHead }} </td>
+      <td> {{ ar.requestDate|date('d/m/Y') }} </td>
+      <td> {{ ar.contactPerson }} </td>
+      <td> {{ ar.arrivalDate|date('d/m/Y') }} </td>
+      <td> {{ ar.departureDate|date('d/m/Y') }} </td>
+      <td> {{ ar.userProfile }} </td>
+      <td> {{ ar.mainGroup }} </td>
+      <td> {% for x in ar.systemsToEnable %} {{ x }} <br> {% endfor %} </td>
+{#
+      <td> {{ ar.mailingLists }} </td>
+#}
+      <td> {{ ar.note }} </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+{% endblock %}

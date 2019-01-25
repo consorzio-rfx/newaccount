@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+  <head>
+
+    <script type="text/javascript" src="{{ asset('js/jquery-3.1.0.min.js') }}"></script>
+    <link href="{{ asset('css/style.css') }}" rel="stylesheet" type="text/css">   
+    <link rel="stylesheet" type="text/css" href="{{ asset('Datatables/datatables.min.css') }}"/>
+    <script type="text/javascript" src="{{ asset('Datatables/datatables.min.js') }}"></script>
+
+    <meta charset="UTF-8" />
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    {% block stylesheets %}{% endblock %}
+    <link rel="icon" type="image/x-icon" href="{{ asset('images/favicon.ico') }}" />
+
+    <script>
+
+      // initialization and configuration
+      $(document).ready( function () {
+          $('#requestTable').dataTable( {
+              "fixedHeader": true,
+              "lengthMenu": [ 200, 100, 75, 50, 25, 10 ]
+              //"info":     false, // remove header and footer 
+              //"ordering": false, 
+              //"bPaginate": false,
+              //"sDom": 'T<"clear">lfrtip'
+      	} ); // end dataTable
+      } ); // end ready function
+      // END initialization and configuration
+
+    </script>
+  </head>
+
+  <body>
+
+  <div id="wrapper">
+    <div align="left">
+      <a href="{{ path('homepage') }}">
+        <img src="{{ asset('images/logo1.png') }}"
+           alt="Consorzio RFX LOGO"
+           height="96" width="400"
+           style="margin-left:20px;margin-right:20px;margin-top:20px;margin-bottom:20px;float:left">
+        </a>
+{#
+      <a href="{{ path('homepage') }}">
+        <img src="{{ asset('images/logo2.png') }}" alt="Publication Procedure LOGO"
+           style="margin-left:20px;margin-right:20px;margin-top:20px;margin-bottom:20px;float:left">
+      </a>
+#}
+    </div>
+  </div>
+
+<!--
+  <div align="left">
+    <a href="{{ path('homepage') }}">
+      <button type="button" class="button">HOME</button></a>
+  </div>
+-->
+
+  <div align="center">
+      <h1>User Account Request</h1>
+      <h2>to be filled by the Group Manager</h2>
+  </div>
+
+
+
+
+
+{#
+  <div align="right">
+    {% if is_granted('IS_AUTHENTICATED_REMEMBERED') %}
+      {% if isManager() %} 
+        <font color="red">MANAGER</font> 
+      {% endif %}
+      {% if isScientificSecretary() %} 
+        <font color="green">Scientific Secretary</font> 
+      {% endif %}
+
+      User: {{ app.user.username }} 
+
+      <a href="{{ path('login') }}">Login</a>
+
+       --- <a href="{{ logout_path('main') }}">Logout</a>
+    {% endif %}
+  </div>
+#}
+
+  <hr>
+
+  {% for flashMessage in app.session.flashbag.get('notice') %}
+    <div class="alert alert-success">
+      {{ flashMessage }}
+    </div>
+  {% endfor %}
+
+  {% for flash_message in app.session.flashBag.get('error') %}
+    <hr><center><h3>
+    <div class="flash-error">
+        {{ flash_message }}
+    </div>
+    </h3></center></hr>
+  {% endfor %}
+
+  {% for flash_message in app.session.flashBag.get('notice') %}
+    <hr><center>
+    <div class="flash-notice">
+        {{ flash_message }}
+    </div>
+    </center></hr>
+  {% endfor %}
+
+
+  {% block body %}{% endblock %}
+
+
+
+  {% block javascripts %}{% endblock %}
+    
+  <hr> 
+
+  <center>
+
+    A <a href="https://symfony.com/" target="_blank">Symfony</a> project by
+    <a href="https://www.igi.cnr.it/" target="_blank">Consorzio RFX</a> 
+    - Supported Browsers: Chrome, Firefox, Opera, Safari
+    {# - <a href="{{ path('utilityhomepage') }}">Utils</a> #}
+  </center>
+
+  </body>
+</html>

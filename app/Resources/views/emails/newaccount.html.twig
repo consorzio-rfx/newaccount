@@ -1,0 +1,26 @@
+<html>
+ <body>
+ New account request - FORM DATA:
+ <ul>
+  <li> Name: <b>{{ ar.name }}</b> </li>
+  <li> Surname: <b>{{ ar.surname }}</b> </li>
+  <li> Group: <b>{{ ar.mainGroup }} </b> </li>
+  <li> Group Head: <b>{{ ar.groupHead }}</b> </li>
+  <li> Contact person: <b> {{ ar.contactPerson }} </b> </li>
+  <li> Arrival date: <b>{{ ar.arrivalDate|date('d/m/Y') }} </b> </li>
+  <li> Departure date: <b>{{ ar.departureDate|date('d/m/Y') }} </b> </li>
+  <li> Profile: <b>{{ ar.userProfile }} </b> </li>
+  <li> Notes: <b>{{ ar.note }} </b> </li>
+  <li> Is NEW account? <b> {% if ar.isRenew %} NO {% else %} YES {% endif %} </b> </li>
+  <li> System to enable:
+       <ul> {% for x in ar.systemsToEnable %} <li> {{ x }} </li> {% endfor %} </ul> </li>
+
+
+ </ul>
+
+ <br>
+ date: {{ ar.requestDate|date('d/m/Y') }}
+ <br>
+ Regards
+ </body>
+</html>

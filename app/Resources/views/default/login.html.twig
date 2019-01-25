@@ -1,0 +1,43 @@
+{# app/Resources/views/default/login.html.twig #}
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+{% if error %}
+    {# {{ error }} this gives a very verbose message #}
+    <div><h1><center>{{ error.messageKey|trans(error.messageData, 'security') }}</center></h1></div> 
+{% endif %}
+
+<script>
+function forceLower(strInput) {
+    strInput.value=strInput.value.toLowerCase();
+}
+</script>
+
+<form action="{{ path('login') }}" method="post">
+  <center>
+  <table>
+   <tr>
+    <td><label for="username"><h2>Username:</h2></label></td>
+    <td><input type="text" id="username" name="_username" value="{{ last_username }}" onkeyup="return forceLower(this);"/></td>
+   </tr>
+   <tr>
+    <td><label for="password"><h2>Password:</h2></label></td>
+    <td><input type="password" id="password" name="_password" /></td>
+   </tr>
+    {#
+        If you want to control the URL the user
+        is redirected to on success (more details below)
+        <input type="hidden" name="_target_path" value="/account" />
+    #}
+   </tr><td></td><td>
+
+    <button type="submit" id="login-submit" class="button" width="18%" style="background-color: #0099bf;">LOGIN</button></td>
+   </tr>
+  </table>
+  </center>
+</form>
+<div align="right">
+</div>
+{% endblock %}
+
